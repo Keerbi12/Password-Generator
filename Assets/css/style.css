@@ -135,3 +135,21 @@ button[disabled] {
     font-size: 0.8rem;
   }
 }
+
+.form {
+  display:grid;
+  grid-auto-columns: auto auto;
+  row-gap: 1px;
+  column-gap: 3px;
+  justify-content: center;
+  align-items: center;
+}
+
+.charaterNumberContainer {
+  display: flex;
+  align-items: center;
+}
+
+.numberInput {
+  width: 3rem;
+}
