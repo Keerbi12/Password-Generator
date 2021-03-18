@@ -27,6 +27,16 @@
         <div class="card-footer">
           <button id="generate" class="btn">Generate Password</button>
         </div>
+        <!--Added form to allow for specification of password criteria-->
+        <form>
+          <!--Added range slider and input for selecting the number of characters-->
+          <label for="characterNumber">Number of characters</label>
+          <input type="range" min="8" max="128" value="8" id="characterNumber">
+          <input type="number" min="8" max="128" value="8" id="characterNumber">
+          <!--Added uppercase and lower case check boxes-->
+          <label for="includeUppercase">Include uppercase</label>
+          <input type="checkbox" id="includeUppercase"> 
+        </form>
       </div>
     </div>
     <script src="script.js"></script>
