@@ -17,10 +17,10 @@ var symbol;
 function writePassword(lower, upper, number, symbol, length) {
 //Added prompts for password criteria.
   length=+prompt("Password length (8-128)");
-  lower=+prompt("Include lowercase characters? (Y or N)");
-  upper=+prompt("Include uppercase characters? (Y or N)");
-  number=+prompt("Include numbers? (Y or N)");
-  symbol=+prompt("Include symbols? (Y or N)");
+  lower=+prompt("Include lowercase characters? (1 = YES or 0 = NO)");
+  upper=+prompt("Include uppercase characters? (1 = YES or 0 = NO)");
+  number=+prompt("Include numbers? (1 = YES or 0 = NO)");
+  symbol=+prompt("Include symbols? (1 = YES or 0 = NO)");
 
   console.log(lower, upper, number, symbol);
   console.log(typeof length)
@@ -50,10 +50,12 @@ function generatePassword(lower, upper, number, symbol, length) {
   }
 
   if(length < 8) {
-    return "Password needs to be longer than 8 characters."
+    return "Password needs to be longer than 8 characters.";
   }
 
-  if
+  if(length > 128) {
+    return "Password needs to be shorther than 128 characters."
+  }
 
   for(let i = 0; i < length; i += typesCount) {
     typesArr.forEach(type => {
