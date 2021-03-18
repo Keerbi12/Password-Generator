@@ -7,44 +7,55 @@ var randomFunction = {
   number: getRandomNumber,
   symbol: getRandomSymbol
 };
+var length;
+var lower;
+var upper;
+var number;
+var symbol;
+
 // Write password to the #password input
-function writePassword() {
-  //Added prompts for password criteria.
-  var passwordLength=prompt("Password length (8-128)");
-  var lower=prompt("Include lowercase characters? (Y or N)");
-  var upper=prompt("Include uppercase characters? (Y or N)");
-  var number=prompt("Include numbers? (Y or N)");
-  var symbol=prompt("Include symbols? (Y or N)");
+function writePassword(lower, upper, number, symbol, length) {
+//Added prompts for password criteria.
+  length=+prompt("Password length (8-128)");
+  lower=+prompt("Include lowercase characters? (Y or N)");
+  upper=+prompt("Include uppercase characters? (Y or N)");
+  number=+prompt("Include numbers? (Y or N)");
+  symbol=+prompt("Include symbols? (Y or N)");
 
-  hasLower=lower;
-  hasUpper=upper;
-  hasNumber=number;
-  hasSymbol=symbol;
-  length=passwordLength;
-
-  var password = generatePassword(hasLower, hasUpper, hasNumber, hasSymbol, length); 
+  console.log(lower, upper, number, symbol);
+  console.log(typeof length)
+  
+  var password = generatePassword(lower, upper, number, symbol, length); 
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
 };
 
-
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
  
-//generatePassword function
+//writing the generatePassword function
 function generatePassword(lower, upper, number, symbol, length) {
   let generatedPassword = "";
   var typesCount = lower + upper + number + symbol;
   console.log("types count:", typesCount);
-  var typesArr = [{lower}, {upper}, {number}, {symbol}];
+  var typesArr = [{lower}, {upper}, {number}, {symbol}].filter
+  (
+    item => Object.values(item)[0]
+  );
   console.log("types Arr:", typesArr);
 
   if(typesCount === 0) {
     return "No input added";
   }
 
-  for(let i = 0; i < 128; i += typesCount) {
+  if(length < 8) {
+    return "Password needs to be longer than 8 characters."
+  }
+
+  if
+
+  for(let i = 0; i < length; i += typesCount) {
     typesArr.forEach(type => {
       var functionName = Object.keys(type)[0];
       console.log("function Name:", functionName);
@@ -53,6 +64,7 @@ function generatePassword(lower, upper, number, symbol, length) {
     });
   }
   var finalPassword = generatedPassword.slice(0, length);
+  console.log(length)
   return finalPassword;
 }
 
