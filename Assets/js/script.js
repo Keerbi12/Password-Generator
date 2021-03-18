@@ -1,6 +1,12 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-
+//Random password generator
+var randomFunction = {
+  lower: getRandomLower,
+  upper: getRandomUpper,
+  number: getRandomNumber,
+  symbol: getRandomSymbol
+};
 // Write password to the #password input
 function writePassword() {
   //Added prompts for password criteria.
@@ -33,7 +39,21 @@ function generatePassword(lower, upper, number, symbol, length) {
   console.log("types count:", typesCount);
   var typesArr = [{lower}, {upper}, {number}, {symbol}];
   console.log("types Arr:", typesArr);
-   
+
+  if(typesCount === 0) {
+    return "No input added";
+  }
+
+  for(let i = 0; i < 128; i += typesCount) {
+    typesArr.forEach(type => {
+      var functionName = Object.keys(type)[0];
+      console.log("function Name:", functionName);
+
+      generatedPassword += randomFunction[functionName]();
+    });
+  }
+  var finalPassword = generatedPassword.slice(0, length);
+  return finalPassword;
 }
 
 // Random functions for lowercase, uppercase, number and symbols.
@@ -50,12 +70,6 @@ function getRandomNumber() {
 }
 
 function getRandomSymbol() {
-  const symbols = "!@#$%^&*()-_=+[]{}/\|;:,.?";
+  var symbols = "!@#$%^&*()-_=+[]{}/\|;:,.?";
   return symbols[Math.floor(Math.random() * symbols.length)];
 }
-
-
-console.log(getRandomLower());
-console.log(getRandomUpper());
-console.log(getRandomNumber());
-console.log(getRandomSymbol());
